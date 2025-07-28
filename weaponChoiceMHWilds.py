@@ -24,6 +24,7 @@ def choice1():
     print("1: High damage, but low speed")
     print("2: Low damage, but high speed")
     print("3: Support")
+    print("Any other number will randomly pick a weapon for you")
     play1 = int(input("So, what is your playstyle? "))
     return play1
 
@@ -33,6 +34,7 @@ def choice2():
     print("1: Cut Damage")
     print("2: Blunt Damage")
     print("3: Ammo Damage")
+    print("Any other number will randomly pick a weapon for you")
     play2 = int(input("So, what kind of damage do you like? "))
     return play2
 
@@ -53,6 +55,7 @@ def play1(weapons1):
             weapons1.remove(Lan)
             weapons1.remove(HB)
             weapons1.remove(GL)
+            weapons1.remove(SX)
         elif play1 == 3:
             weapons1.remove(LS)
             weapons1.remove(GS)
@@ -68,7 +71,7 @@ def play1(weapons1):
     else:
         r = random.randint(0, len(weapons1)-1)
         weapon = weapons1[r]
-        print(weapon)
+        print("Your random choice of a weapon is " + weapon)
         exit()
     print(weapons1)
     return(weapons1)
@@ -109,7 +112,7 @@ def play2(weapons2):
     else:
         r = random.randint(0, len(weapons2)-1)
         weapon = weapons2[r]
-        print(weapon)
+        print("Your random choice of a weapon is " + weapon)
         exit()
     print(weapons2)
     return weapons2
