@@ -15,7 +15,8 @@ IG = "Insect Glaive"
 LB = "Light Bowgun"
 HB = "Heavy Bowgun"
 Bow = "Bow"
-weapons = [LS, GS, SnS, DB, Ham, HH, Lan, GL, SX, CB, IG, LB, HB, Bow]
+weapons1 = [LS, GS, SnS, DB, Ham, HH, Lan, GL, SX, CB, IG, LB, HB, Bow]
+weapons2 = [LS, GS, SnS, DB, Ham, HH, Lan, GL, SX, CB, IG, LB, HB, Bow]
 
 # ask the user about their playstyle
 def choice1():
@@ -36,42 +37,93 @@ def choice2():
     return play2
 
 # creates condition for the choices about playstyle
-def play1(weapons):
+def play1(weapons1):
     play1 = choice1()
-    if play1 <= 3 or play1 >= 1:
+    if play1 <= 3 and play1 >= 1:
         if play1 == 1:
-            weapons.remove(LS)
-            weapons.remove(DB)
-            weapons.remove(HH)
-            weapons.remove(LB)
-            weapons.remove(Bow)
+            weapons1.remove(LS)
+            weapons1.remove(DB)
+            weapons1.remove(HH)
+            weapons1.remove(LB)
+            weapons1.remove(Bow)
         elif play1 == 2:
-            weapons.remove(GS)
-            weapons.remove(Ham)
-            weapons.remove(HH)
-            weapons.remove(Lan)
-            weapons.remove(HB)
+            weapons1.remove(GS)
+            weapons1.remove(Ham)
+            weapons1.remove(HH)
+            weapons1.remove(Lan)
+            weapons1.remove(HB)
+            weapons1.remove(GL)
         elif play1 == 3:
-            weapons.remove(LS)
-            weapons.remove(GS)
-            weapons.remove(SnS)
-            weapons.remove(DB)
-            weapons.remove(Ham)
-            weapons.remove(Lan)
-            weapons.remove(GL)
-            weapons.remove(SX)
-            weapons.remove(CB)
-            weapons.remove(IG)
-            weapons.remove(Bow)
-    print(weapons)
-    return(weapons)
+            weapons1.remove(LS)
+            weapons1.remove(GS)
+            weapons1.remove(SnS)
+            weapons1.remove(DB)
+            weapons1.remove(Ham)
+            weapons1.remove(Lan)
+            weapons1.remove(GL)
+            weapons1.remove(SX)
+            weapons1.remove(CB)
+            weapons1.remove(IG)
+            weapons1.remove(Bow)
+    else:
+        r = random.randint(0, len(weapons1)-1)
+        weapon = weapons1[r]
+        print(weapon)
+        exit()
+    print(weapons1)
+    return(weapons1)
 
-def play2(weapons):
+# creates condition for the choices about damage types
+def play2(weapons2):
     play2 = choice2()
-    if play1 <= 3 or play1 >= 1:
-        if play1 == 1:
-            if(any(weapons) == Ham):
-                weapons.remove(Ham)
+    if play2 <= 3 and play2 >= 1:
+        if play2 == 1:
+            weapons2.remove(Ham)
+            weapons2.remove(HH)
+            weapons2.remove(Bow)
+            weapons2.remove(LB)
+            weapons2.remove(HB)
+        elif play2 == 2:
+            weapons2.remove(GS)
+            weapons2.remove(SnS)
+            weapons2.remove(DB)
+            weapons2.remove(LS)
+            weapons2.remove(GL)
+            weapons2.remove(SX)
+            weapons2.remove(Bow)
+            weapons2.remove(CB)
+            weapons2.remove(LB)
+            weapons2.remove(HB)
+            weapons2.remove(IG)
+            weapons2.remove(Lan)
+        elif play2 == 3:
+            weapons2.remove(GS)
+            weapons2.remove(SnS)
+            weapons2.remove(DB)
+            weapons2.remove(LS)
+            weapons2.remove(Lan)
+            weapons2.remove(SX)
+            weapons2.remove(Ham)
+            weapons2.remove(HH)
+            weapons2.remove(CB)
+    else:
+        r = random.randint(0, len(weapons2)-1)
+        weapon = weapons2[r]
+        print(weapon)
+        exit()
+    print(weapons2)
+    return weapons2
 
-play1(weapons)
-play2(weapons)
+# create a loop to make two list into one but only keep the one that was used twice
+def weaponList():
+    weapon1 = play1(weapons1)
+    weapon2 = play2(weapons2)
+    weapon3 = []
+    for i in weapon1:
+        for j in weapon2: # O(n^2)
+            if i == j:
+                weapon3.append(i)
+    print(weapon3)
+    return weapon3
+
+weaponList()
